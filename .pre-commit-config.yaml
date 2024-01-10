@@ -1,0 +1,27 @@
+repos:
+  - repo: https://github.com/psf/black
+    rev: 23.12.1
+    hooks:
+      - id: black
+        files: "^src|^test|."
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        files: "^src|^test|."
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: Run pytest
+        entry: pytest -m "not on_demand"
+        language: system
+        types: [python]
+        pass_filenames: false
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.0.0
+    hooks:
+      - id: flake8
+        files: "^src|^test|."

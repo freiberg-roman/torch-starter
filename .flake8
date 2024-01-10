@@ -1,0 +1,11 @@
+[flake8]
+exclude =
+    ,asset
+    .git
+    ,data
+    ,.github
+    ,requirements
+
+max-line-length = 100
+select = E,F,W,C
+ignore=W503,E203
