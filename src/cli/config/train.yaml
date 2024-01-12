@@ -1,0 +1,9 @@
+defaults:
+  - data: random_points
+  - optimizer: adamw
+
+schedule:
+  epochs: 100
+  save_every_n_epochs: 5
+
+device: "cpu"
