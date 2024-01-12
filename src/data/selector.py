@@ -1,4 +1,5 @@
 from omegaconf import DictConfig
+
 from src.data.random_coordinates import RandomCoordinatesDS
 
 

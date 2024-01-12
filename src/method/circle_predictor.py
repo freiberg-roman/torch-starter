@@ -10,6 +10,7 @@ from src.method.base import BaseMethod, DataIn, DataInference, DataOut, DataRaw,
 from src.model.encoder import SinusoidalPosEmb
 from src.model.mlp import MLP
 
+
 @dataclass
 class CircleData(DataIn):
     coords: CartesianCoordinates
@@ -18,6 +19,7 @@ class CircleData(DataIn):
 @dataclass
 class CirclePrediction(DataOut):
     confidence: torch.Tensor
+
 
 @dataclass
 class CircleTarget(DataTarget):
@@ -58,7 +60,7 @@ class LearnCircleMethod(BaseMethod):
     def pre_process(self, data: CircleCoordinates) -> Tuple[CircleData, CircleTarget]:
         input = CircleData(data.coords)
         # yes, this is a bit over-engineered for such a small example
-        is_inside = torch.sum(data.coords.coordinate ** 2, dim=-1) < 1.0
+        is_inside = torch.sum(data.coords.coordinate**2, dim=-1) < 1.0
         target = CircleTarget(is_inside)
         return input, target
 

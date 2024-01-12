@@ -1,16 +1,18 @@
-from typing import List
-import torch
 from dataclasses import dataclass
-from src.data.base import BaseDS
+from typing import List
 
+import torch
+
+from src.data.base import BaseDS
 from src.method.circle_predictor import CircleCoordinates
+
 
 @dataclass
 class SourceCoordinates(CircleCoordinates):
     coords: torch.Tensor
 
-class RandomCoordinatesDS(BaseDS):
 
+class RandomCoordinatesDS(BaseDS):
     def __init__(self, dimensions: int, amount: int):
         self.dimensions = dimensions
         self.amount = amount
