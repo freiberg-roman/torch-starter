@@ -1,0 +1,4 @@
+in_dim: 64
+out_dim: 1
+hidden_dim: 16
+hidden_layers: 4

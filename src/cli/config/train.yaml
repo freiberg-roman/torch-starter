@@ -1,6 +1,7 @@
 defaults:
   - data: random_points
   - optimizer: adamw
+  - method: circle
 
 schedule:
   epochs: 100

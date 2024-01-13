@@ -35,22 +35,22 @@ class LearnCircleMethod(BaseMethod):
     def __init__(self, cfg: DictConfig):
         super().__init__()
         self.encoder = SinusoidalPosEmb(**cfg.encoder)
-        self.mlp = MLP(**cfg.nerf)
+        self.mlp = MLP(**cfg.ff)
 
         self.logging = {}
 
     def forward(self, circle_data: CircleData) -> CirclePrediction:
         assert isinstance(circle_data, CircleData)  # save guard
 
-        x = self.encoder(circle_data.coords)
+        x = self.encoder(circle_data.coords.coordinate)
         out = self.mlp(x)
 
-        self.logging = {"in_circle_confidence": out.detach().mean().cpu().numpy()}
+        # self.logging = {"in_circle_confidence": out.detach().mean().cpu().numpy()}
 
-        return out
+        return CirclePrediction(out)
 
     def compute_loss(self, model_out: CirclePrediction, target: CircleTarget) -> torch.Tensor:
-        return mse_loss(model_out.confidence, target.is_inside)
+        return mse_loss(model_out.confidence, target.is_inside.type(dtype=torch.float))
 
     def pop_logs(self):
         out = self.logging

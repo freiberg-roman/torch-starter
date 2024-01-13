@@ -8,7 +8,7 @@ class CartesianCoordinates:
     coordinate: torch.Tensor
 
     def __post_init__(self):
-        assert self.coordinates.shape[-1] == 3
+        assert self.coordinate.shape[-1] == 2
 
     def to(self, device: torch.device):
-        self.coordinates = self.coordinates.to(device)
+        self.coordinate = self.coordinate.to(device)

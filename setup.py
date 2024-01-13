@@ -29,6 +29,8 @@ with open("README.md") as f:
         long_description=LONG_DESC,
         long_description_content_type="text/markdown",
         keywords="starter torch deeplearning",
+        # rename the src directory to your project name and exchange the following
+        # packages below
         packages=find_namespace_packages(include=["src", "src.*"]),
         include_package_data=True,
         classifiers=[
