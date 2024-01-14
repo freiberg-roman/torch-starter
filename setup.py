@@ -14,7 +14,7 @@ with open("README.md", "r") as f:
     long_description = f.read()
 
 
-init_str = pathlib.Path("src/__init__.py").read_text()
+init_str = pathlib.Path("{{project_name}}/__init__.py").read_text()
 version = init_str.split("__version__ = ")[1].rstrip().strip('"')
 
 
@@ -31,7 +31,7 @@ with open("README.md") as f:
         keywords="starter torch deeplearning",
         # rename the src directory to your project name and exchange the following
         # packages below
-        packages=find_namespace_packages(include=["src", "src.*"]),
+        packages=find_namespace_packages(include=["{{project_name}}", "{{project_name}}.*"]),
         include_package_data=True,
         classifiers=[
             "Programming Language :: Python :: 3.9",

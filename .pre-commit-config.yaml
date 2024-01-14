@@ -3,13 +3,13 @@ repos:
     rev: 23.12.1
     hooks:
       - id: black
-        files: "^src|^test|."
+        files: "^{{project_name}}|^test|."
 
   - repo: https://github.com/pycqa/isort
     rev: 5.12.0
     hooks:
       - id: isort
-        files: "^src|^test|."
+        files: "^{{project_name}}|^test|."
 
   - repo: local
     hooks:
@@ -24,4 +24,4 @@ repos:
     rev: 7.0.0
     hooks:
       - id: flake8
-        files: "^src|^test|."
+        files: "^{{project_name}}|^test|."
