@@ -5,12 +5,13 @@ import os
 
 def replace_in_python_files(src_dir, package_name):
     if os.path.exists(src_dir) and os.path.isdir(src_dir):
-        for file in os.listdir(src_dir):
-            if file.endswith(".py"):
-                filepath = os.path.join(src_dir, file)
-                with fileinput.FileInput(filepath, inplace=True) as file:
-                    for line in file:
-                        print(line.replace("from src.", f"from {package_name}."), end="")
+        for root, _, files in os.walk(src_dir):
+            for file in files:
+                if file.endswith(".py"):
+                    filepath = os.path.join(root, file)
+                    with fileinput.FileInput(filepath, inplace=True) as f:
+                        for line in f:
+                            print(line.replace("from src.", f"from {package_name}."), end="")
     else:
         print(f"Directory '{src_dir}' not found. Make sure you are in the correct directory.")
 
@@ -24,11 +25,11 @@ def rename_src_directory(src_dir, package_name):
 
 def replace_package_name_placeholder(top_level_dir, package_name):
     for file in os.listdir(top_level_dir):
-        if not file.endswith(".py") and not os.path.isdir(file):
+        if not os.path.isdir(file):
             filepath = os.path.join(top_level_dir, file)
-            with fileinput.FileInput(filepath, inplace=True) as file:
-                for line in file:
-                    print(line.replace("{{package_name}}", package_name), end="")
+            with fileinput.FileInput(filepath, inplace=True) as f:
+                for line in f:
+                    print(line.replace("{{project_name}}", package_name), end="")
 
 
 def main():

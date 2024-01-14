@@ -34,6 +34,12 @@ pre-commit run --all-files
 Install your project in an editable mode:
 
 ```bash
+python starter.py # choose your package name
+git add .
+git commit -m "project template configuration"
+```
+After that, you can install your project with
+```bash
 pip install -e .
 ```
 
